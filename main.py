@@ -165,43 +165,54 @@ def ARA():
 #----------------------DOLDUR-----------------------------#
 #---------------------------------------------------------#
 def DOLDUR():
-    secili=ui.tblwSporcuBilgi.selectedItems()
-    ui.lneTCK.setText(secili[1].text())
-    ui.lneSporcuAdi.setText(secili[2].text())
-    ui.lneSporcuSoyadi.setText(secili[3].text())
-    ui.cmbSporKulubu.setCurrentText(secili[4].text())
-    if secili[5].text()=="Güreş":
-        ui.lwBrans.item(0).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(0))
-    if secili[5].text()=="Boks":
-        ui.lwBrans.item(1).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(1))
-    if secili[5].text()=="Karete":
-        ui.lwBrans.item(2).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(2))
-    if secili[5].text()=="Tekvando":
-        ui.lwBrans.item(3).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(3))
-    if secili[5].text()=="Aikido":
-        ui.lwBrans.item(4).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(4))
-    if secili[5].text()=="Judo":
-        ui.lwBrans.item(5).setSelected(True)
-        ui.lwBrans.setCurrentItem(ui.lwBrans.item(5))
+    # BOŞ SATIR OLMASINA KARŞI HATA YAKALAMA EKLEDİK
+    try:
+        # ÖNCE TIKLANAN SATIRIN SATIRININ NUMARASINI BULDUK
+        satir_id=ui.tblwSporcuBilgi.currentItem().row()
+
+        # BOŞ BİR DİZİYE O SATIRDAKİ TÜM ELEMANLARI TEK TEK EKLEDİK
+        secili = []
+        for i in range(0,10+1):
+            secili.append(ui.tblwSporcuBilgi.item(satir_id,i))
     
-    ui.cmbCinsiyet.setCurrentText(secili[6].text())
-    
-    yil=int(secili[7].text()[0:4])
-    ay=int(secili[7].text()[5:7])
-    gun=int(secili[7].text()[8:10])
-    ui.cwDTarihi.setSelectedDate(QtCore.QDate(yil,ay,gun))
-    
-    if secili[8].text()=="Evli":
-        ui.chkMedeniHal.setChecked(True)
-    else:
-        ui.chkMedeniHal.setChecked(False)
-    
-    ui.spnKilo.setValue(int(secili[9].text()))
+        ui.lneTCK.setText(secili[1].text())
+        ui.lneSporcuAdi.setText(secili[2].text())
+        ui.lneSporcuSoyadi.setText(secili[3].text())
+        ui.cmbSporKulubu.setCurrentText(secili[4].text())
+        if secili[5].text()=="Güreş":
+            ui.lwBrans.item(0).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(0))
+        if secili[5].text()=="Boks":
+            ui.lwBrans.item(1).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(1))
+        if secili[5].text()=="Karete":
+            ui.lwBrans.item(2).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(2))
+        if secili[5].text()=="Tekvando":
+            ui.lwBrans.item(3).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(3))
+        if secili[5].text()=="Aikido":
+            ui.lwBrans.item(4).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(4))
+        if secili[5].text()=="Judo":
+            ui.lwBrans.item(5).setSelected(True)
+            ui.lwBrans.setCurrentItem(ui.lwBrans.item(5))
+        
+        ui.cmbCinsiyet.setCurrentText(secili[6].text())
+        
+        yil=int(secili[7].text()[0:4])
+        ay=int(secili[7].text()[5:7])
+        gun=int(secili[7].text()[8:10])
+        ui.cwDTarihi.setSelectedDate(QtCore.QDate(yil,ay,gun))
+        
+        if secili[8].text()=="Evli":
+            ui.chkMedeniHal.setChecked(True)
+        else:
+            ui.chkMedeniHal.setChecked(False)
+        
+        ui.spnKilo.setValue(int(secili[9].text()))
+    except:
+        pass
     
 #----------------------GÜNCELLE-----------------------------#
 #---------------------------------------------------------#
